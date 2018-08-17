@@ -31,7 +31,6 @@ var app = new Vue ({
         removeTask(index) {
             this.tasks.splice(index, 1);
         },
-
         completeTask() {
             var checkBox = document.getElementById('checkedBox');
             var completedTasks = document.getElementById('taskNumber');
@@ -39,7 +38,7 @@ var app = new Vue ({
                 this.numberCompleted++
             } else if (checkBox.checked == false){
                 this.numberCompleted--
-            };
+            }
         }
     }
 });
