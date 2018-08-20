@@ -2,7 +2,8 @@
   <div class="bgImage">
   <div id="app">
     <todo-list v-bind:todos="todos"></todo-list>
-    <create-todo v-on:add-todo="addTodo"></create-todo>
+    <create-todo v-on:send-form="addTodo"></create-todo>
+
   </div>
   </div>
 </template>
@@ -25,32 +26,34 @@ export default {
           todos: [
               {
                 title: 'Udemy Course',
-                project: 'Become an expert in Vue',
+                project: 'Become an expert in Vue by the end of the week.',
                 done: false,
               },
               {
-                  title: 'Hair',
-                  project: 'Make a hair appointment for next week.',
+                  title: 'Hair Appointment',
+                  project: 'Make a hair appointment for next Saturday afternoon.',
                   done: true,
               },
               {
                   title: 'World Domination',
-                  project: 'Take over the world!!!!!',
+                  project: 'Take over the world!!!!! Muahahahaha',
                   done: false,
               },
               {
-                  title: 'New Hobby',
-                  project: 'Learn to juggle.',
+                  title: 'Find a new hobby',
+                  project: 'Learn about juggling or trapeze artistry.',
                   done: false,
               }
           ]
       }
     },
     methods: {
-      addTodo(title) {
+      addTodo(newTodo) {
           this.todos.push({
-              title,
+              title: newTodo.title,
+              project: newTodo.project,
               done: false,
+
           });
       },
     },

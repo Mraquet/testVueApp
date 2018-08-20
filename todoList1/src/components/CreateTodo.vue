@@ -1,25 +1,28 @@
 <template>
+  <div class="container">
     <div class="newTaskBtn">
         <div class="btn btn-primary" v-on:click="openForm" v-show="!isCreating">
-            <i class="fas fa-plus"></i>
+            <i class="fas fa-plus"></i> New todo item
         </div>
-        <div class="card" v-show="isCreating">
+        <div class="card w-50 mx-auto" v-show="isCreating">
             <div class="content">
-                <form class="form">
-                    <div class="field">
-                        <label>Title</label>
-                        <input v-model="titleText" type="text" ref="title" defaultValue="">
+                <form v-on:submit.prevent>
+                    <div class="form-group row">
+                        <label for="taskTitle" class="col-sm-2 col-form-label">Title</label>
+                        <div class="col-sm-10">
+                            <input class="form-control " v-model="titleText" type="text" id="taskTitle" defaultValue="">
+                        </div>
                     </div>
-                    <div class="field">
-                        <label>Project</label>
-                        <input type="text" ref="project" defaultValue="">
+                    <div class="form-group row">
+                        <label for="projectTitle" class="col-sm-2 col-form-label">Project</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" id="projectTitle" v-model="projectText" type="text" defaultValue="">
+                        </div>
                     </div>
-                    <div class="sendFormBtn">
+                    <div class="formBtn">
                         <div class="btn btn-primary" v-on:click="sendForm()">
                             Create
                         </div>
-                    </div>
-                    <div class="cancelFormBtn">
                         <div class="btn btn-warning" v-on:click="closeForm()">
                             Cancel
                         </div>
@@ -28,6 +31,7 @@
             </div>
         </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -50,19 +54,16 @@
                 if(this.titleText.length > 0 && this.projectText.length > 0) {
                     const title = this.titleText;
                     const project = this.projectText;
-                    this.$emit('create-todo', {
+                    this.$emit('send-form', {
                         title,
                         project,
                         done: false,
                     });
-                    this.newTodoText = '';
+                    alert ('Success!')
+
                 }
                 this.isCreating = false;
             },
         },
     };
 </script>
-
-<style>
-
-</style>
