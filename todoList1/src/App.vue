@@ -2,18 +2,24 @@
   <div class="bgImage">
   <div id="app">
     <todo-list v-bind:todos="todos"></todo-list>
+    <create-todo v-on:add-todo="addTodo"></create-todo>
   </div>
   </div>
 </template>
 
 <script>
 import TodoList from './components/TodoList'
+import todoListStyle1 from './assets/todoListStyle1.css'
+import CreateTodo from './components/CreateTodo'
 
 export default {
   name: 'App',
   components: {
     TodoList,
+    todoListStyle1,
+    CreateTodo,
   },
+
     data() {
       return {
           todos: [
@@ -39,11 +45,18 @@ export default {
               }
           ]
       }
-    }
+    },
+    methods: {
+      addTodo(title) {
+          this.todos.push({
+              title,
+              done: false,
+          });
+      },
+    },
 }
 </script>
 
 <style>
-  body
-    background: url("")
+
 </style>
